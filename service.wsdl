@@ -1,0 +1,78 @@
+<definitions name = "validar" targetNamespace = "http://www.examples.com/wsdl/validar.wsdl" xmlns = "http://schemas.xmlsoap.org/wsdl/" xmlns:soap = "http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns = "http://www.examples.com/wsdl/validar.wsdl" xmlns:xsd = "http://www.w3.org/2001/XMLSchema">
+ 
+
+    <message name = "confirmarUsuarioRequest">
+      <part name = "rut" type = "xsd:string"/>
+   </message>
+	
+   <message name = "confirmarUsuarioResponse">
+      <part name = "greeting" type = "xsd:string"/>
+   </message>
+
+   <message name = "validarUsuarioRequest">
+      <part name = "rut" type = "xsd:string"/>
+   </message>
+	
+   <message name = "validarUsuarioResponse">
+      <part name = "greeting" type = "xsd:string"/>
+   </message>
+
+    <portType name = "validar_PortType">
+      <operation name = "confirmarUsuario">
+         <input message = "tns:confirmarUsuarioRequest"/>
+         <output message = "tns:confirmarUsuarioResponse"/>
+      </operation>
+
+      <operation name = "validarUsuario">
+         <input message = "tns:validarUsuarioRequest"/>
+         <output message = "tns:validarUsuarioResponse"/>
+      </operation>
+
+   </portType>
+
+
+    <binding name = "validar_Binding" type = "tns:validar_PortType">
+      <soap:binding style = "rpc" transport = "http://schemas.xmlsoap.org/soap/http"/>
+
+      <operation name = "confirmarUsuario">
+         <soap:operation soapAction = "confirmarUsuario"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "urn:examples:validar"
+               use = "encoded"/>
+         </input>
+		
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "urn:examples:validar"
+               use = "encoded"/>
+         </output>
+      </operation>
+
+       <operation name = "validarUsuario">
+         <soap:operation soapAction = "validarUsuario"/>
+         <input>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "urn:examples:validar"
+               use = "encoded"/>
+         </input>
+		
+         <output>
+            <soap:body
+               encodingStyle = "http://schemas.xmlsoap.org/soap/encoding/"
+               namespace = "urn:examples:validar"
+               use = "encoded"/>
+         </output>
+      </operation>
+   </binding>
+
+   <service name = "validar_Service">
+      <port binding = "tns:validar_Binding" name = "validar_Port">
+         <soap:address
+          location="http://localhost:8001/wsdl" />
+      </port>
+   </service>
+</definitions>
